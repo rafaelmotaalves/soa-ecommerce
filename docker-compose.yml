@@ -1,0 +1,19 @@
+version: "3"
+services:
+    fachada:
+        build:
+            context: ./fachada/
+        ports:
+            - "8080:8080"
+    acesso:
+        build:
+            context: ./controle-acesso
+        ports:
+          - "5000:5000"
+    db:
+        image: postgres
+        environment:
+            POSTGRES_PASSWORD: "password"
+            POSTGRES_DB: "acesso"
+        ports:
+        - "15432:5432"

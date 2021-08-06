@@ -1,0 +1,6 @@
+Flask
+Flask-SQLAlchemy
+marshmallow-sqlalchemy
+flask_marshmallow
+psycopg2-binary
+PyJWT

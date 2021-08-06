@@ -1,0 +1,20 @@
+acesso:
+  url: http://localhost:5000/verificar
+server:
+    port: 8080
+spring:
+    application:
+      name: gateway
+    cloud:
+        gateway:
+            routes:
+                - id: controle-acesso
+                  uri: http://localhost:5000/login
+                  predicates:
+                  - Path=/login
+                - id: controle-acesso
+                  uri: http://localhost:5000/
+                  predicates:
+                  - Path=/
+                  filters:
+                  - AcessoFilterFactory
