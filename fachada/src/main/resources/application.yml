@@ -7,6 +7,8 @@ spring:
       name: gateway
     cloud:
         gateway:
+            default-filters:
+            - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
             routes:
                 - id: controle-acesso
                   uri: http://localhost:5000/login
@@ -18,3 +20,9 @@ spring:
                   - Path=/
                   filters:
                   - AcessoFilterFactory
+            globalcors:
+              corsConfigurations:
+                '[/**]':
+                  allowedOrigins: "*"
+                  allowedHeaders: "*"
+                  allowedMethods: "*"
