@@ -1,18 +1,22 @@
 class CartaoController < ApplicationController
   before_action :instanciar_fachada
   def index
-    email = params[:email]
-    @fachada.encontrar_cartao(email)
+    email = request.headers[:email]
+    render json: {
+      data: @fachada.encontrar_cartao(email)
+    }, status: :ok
   end
 
   def create
-    email = params[:email]
+    email = request.headers[:email]
     type = params[:type]
     name = params[:name]
     number = params[:number]
     expiration = params[:expiration]
     cvv = params[:cvv]
-    @fachada.cadastrar_cartao(email, type, name, number, expiration, cvv)
+    render json: {
+      data: @fachada.cadastrar_cartao(email, type, name, number, expiration, cvv)
+    }, status: :ok
   end
 
   def instanciar_fachada

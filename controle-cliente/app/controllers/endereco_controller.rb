@@ -1,18 +1,23 @@
 class EnderecoController < ApplicationController
   before_action :instanciar_fachada
   def index
-    email = params[:email]
+    email = request.headers[:email]
     @fachada.encontrar_endereco(email)
+    render json: {
+      data: @fachada.encontrar_endereco(email)
+    }, status: :ok
   end
 
   def create
-    email = params[:email]
+    email = request.headers[:email]
     rua = params[:rua]
     numero = params[:numero]
     cidade = params[:cidade]
     uf = params[:uf]
     cep = params[:cep]
-    @fachada.cadastrar_endereco(email, rua, numero, cidade, uf, cep)
+    render json: {
+      data: @fachada.cadastrar_endereco(email, rua, numero, cidade, uf, cep)
+    }, status: :ok
   end
 
   def instanciar_fachada

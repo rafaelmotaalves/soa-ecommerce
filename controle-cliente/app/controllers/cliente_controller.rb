@@ -1,8 +1,10 @@
 class ClienteController < ApplicationController
   before_action :instanciar_fachada
   def create
-    email = params[:email]
-    @fachada.cadastrar_cliente(email)
+    email = request.headers[:email]
+    render json: {
+      data: @fachada.cadastrar_cliente(email)
+    }, status: :ok
   end
 
   def instanciar_fachada
