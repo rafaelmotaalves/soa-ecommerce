@@ -1,12 +1,14 @@
 class Fachada
-  def initialize(repo_cliente, repo_cartao, repo_endereco)
+  def initialize(repo_cliente, repo_cliente_internet, repo_cartao, repo_endereco)
     @repo_cliente = repo_cliente
+    @repo_cliente_internet = repo_cliente_internet
     @repo_cartao = repo_cartao
     @repo_endereco = repo_endereco
   end
 
-  def cadastrar_cliente(email)
+  def cadastrar_cliente(email, senha)
     @repo_cliente.cadastrar_cliente(email)
+    @repo_cliente_internet.cadastrar_cliente_internet(email, senha)
   end
 
   def encontrar_endereco(email)

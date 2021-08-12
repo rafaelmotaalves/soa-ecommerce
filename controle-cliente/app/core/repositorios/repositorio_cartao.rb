@@ -8,7 +8,7 @@ class Repositorios::RepositorioCartao
   def cadastrar_cartao(cliente_id, type, name, number, expiration, cvv)
     return nil if cliente_id.blank?
 
-    Cartao.create!(type: type, name: name,
+    Cartao.create!(card_type: type, name: name,
                   number: number, expiration: expiration,
                   cvv: cvv, cliente_id: cliente_id)
   end

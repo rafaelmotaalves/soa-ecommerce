@@ -1,10 +1,7 @@
-class EnderecoController < ApplicationController
-  before_action :instanciar_fachada
+class EnderecoController < AuthenticatedController
   def index
-    email = request.headers[:email]
-    @fachada.encontrar_endereco(email)
     render json: {
-      data: @fachada.encontrar_endereco(email)
+      data: @fachada.encontrar_endereco(@email)
     }, status: :ok
   end
 
@@ -16,15 +13,7 @@ class EnderecoController < ApplicationController
     uf = params[:uf]
     cep = params[:cep]
     render json: {
-      data: @fachada.cadastrar_endereco(email, rua, numero, cidade, uf, cep)
+      data: @fachada.cadastrar_endereco(@email, rua, numero, cidade, uf, cep)
     }, status: :ok
-  end
-
-  def instanciar_fachada
-    @fachada = Fachada.new(
-      Repositorios::RepositorioCliente.new,
-      Repositorios::RepositorioCartao.new,
-      Repositorios::RepositorioEndereco.new
-    )
   end
 end
