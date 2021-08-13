@@ -4,6 +4,7 @@ import { LoginController } from "../paginas/Login";
 import { CadastroController } from "../paginas/Cadastro";
 import { CadastroCartaoController } from "../paginas/CadastroCartao";
 import { CartoesController } from "../paginas/Cartoes"
+import { CadastroEnderecoController } from "../paginas/CadastroEndereco"
 import { estaAutenticado } from "../servicos/auth";
 
 const RotaAutenticada = ({ component: Component, ...rest }) => (
@@ -25,6 +26,7 @@ const Rotas = () => (
       <Route exact path="/" component={LoginController} />
       <Route exact path="/cadastrar" component={CadastroController} />
       <RotaAutenticada exact path="/cartoes/cadastrar" component={CadastroCartaoController} />
+      <RotaAutenticada exact path="/enderecos/cadastrar" component={CadastroEnderecoController} />
       <RotaAutenticada exact path="/cartoes" component={CartoesController} />
       <RotaAutenticada path="/hello" component={() => <h1>App</h1>} />
       <Route path="*" component={() => <h1>Pagina não encontrada</h1>} />
