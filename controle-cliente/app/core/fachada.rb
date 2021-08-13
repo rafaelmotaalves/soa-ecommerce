@@ -28,6 +28,6 @@ class Fachada
 
   def cadastrar_endereco(email, rua, numero, cidade, uf, cep)
     cliente = @repo_cliente.encontrar_cliente(email)
-    @repo_cartao.cadastrar_cartao(cliente.id, rua, numero, cidade, uf, cep)
+    @repo_endereco.cadastrar_endereco(cliente.id, rua, numero, cidade, uf, cep)
   end
 end
