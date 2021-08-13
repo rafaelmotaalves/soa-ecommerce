@@ -36,6 +36,12 @@ spring:
                   - Path=/enderecos/cadastrar
                   filters:
                   - AcessoFilterFactory
+                - id: controle-cliente
+                  uri: http://localhost:4000/enderecos
+                  predicates:
+                  - Path=/enderecos
+                  filters:
+                  - AcessoFilterFactory
                 - id: controle-acesso
                   uri: http://localhost:5000/
                   predicates:
