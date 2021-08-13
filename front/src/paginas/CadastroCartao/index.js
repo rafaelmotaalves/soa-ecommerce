@@ -1,5 +1,4 @@
 import api from "../../servicos/api"
-import { pegarToken } from "../../servicos/auth"
 import { CadastroCartaoView } from './view';
 
 export function CadastroCartaoController (props) {
