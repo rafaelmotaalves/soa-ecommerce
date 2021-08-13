@@ -2,7 +2,7 @@ class Repositorios::RepositorioEndereco
   def encontrar_endereco(cliente_id)
     return nil if cliente_id.blank?
 
-    Endereco.find_by(cliente_id: cliente_id)
+    Endereco.where(cliente_id: cliente_id)
   end
 
   def cadastrar_endereco(cliente_id, rua, numero, cidade, uf, cep)
