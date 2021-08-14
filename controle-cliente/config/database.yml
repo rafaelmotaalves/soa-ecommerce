@@ -3,7 +3,7 @@ default: &default
   pool: 5
   username: root
   password: password
-  host: soa-ecommerce_cliente_db_1
+  host: <%= ENV['DATABASE_HOST'] %>
   timeout: 5000
 
 development:
