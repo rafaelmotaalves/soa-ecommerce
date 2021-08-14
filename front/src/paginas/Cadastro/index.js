@@ -4,10 +4,8 @@ import { CadastroView } from './view';
 
 export function CadastroController (props) {
     async function cadastrar(email, senha) {
-        const res = await api.post('/cadastrar', { email, senha })
-        const token = res.data.token;
-        armazenarToken(token);
-        props.history.push("/")
+        await api.post('/cadastrar', { email, senha })
+        props.history.push("/login")
     }
 
     return <CadastroView onSubmit={cadastrar}/>

@@ -12,7 +12,11 @@ class Repositorios::RepositorioClienteInternet
     request = Net::HTTP::Post.new('/cadastrar', initheader = {'Content-Type' =>'application/json'})
     request.body = body
     response = Net::HTTP.new(host, port).start {|http| http.request(request)}
-    response.body
+    if response.kind_of? Net::HTTPSuccess
+      response.body
+    else
+      raise response.body
+    end
   end
 
   def host

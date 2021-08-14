@@ -7,8 +7,8 @@ class Fachada
   end
 
   def cadastrar_cliente(email, senha)
-    @repo_cliente.cadastrar_cliente(email)
     @repo_cliente_internet.cadastrar_cliente_internet(email, senha)
+    @repo_cliente.cadastrar_cliente(email)
   end
 
   def encontrar_endereco(email)
