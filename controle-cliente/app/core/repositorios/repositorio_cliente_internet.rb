@@ -16,10 +16,10 @@ class Repositorios::RepositorioClienteInternet
   end
 
   def host
-    'localhost'
+    ENV["ACESSO_HOST"].to_s
   end
 
   def port
-    '5000'
+    ENV["ACESSO_PORT"].to_i
   end
 end

@@ -12,7 +12,7 @@ services:
             - "8082:8082"
         environment:
             ACESSO_URL: "http://acesso:5000"
-            CLIENTE_URL: "http://cliente:4000"
+            CLIENTE_URL: "http://cliente:3000"
     acesso:
         build:
             context: ./controle-acesso
@@ -30,7 +30,7 @@ services:
             DATABASE_PORT: "5432"
             ACESSO_HOST: "acesso"
             ACESSO_PORT: "5000"
-        command: bash -c "bundle exec rails s"
+        command: bash -c "bundle exec rails s -b 0.0.0.0"
         ports:
             - "4000:3000"
         depends_on:
