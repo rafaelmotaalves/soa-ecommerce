@@ -10,6 +10,12 @@ services:
             context: ./controle-acesso
         ports:
           - "5000:5000"
+    cliente:
+        build:
+            context: ./controle-cliente
+        command: bash -c "bundle exec rails s"
+        ports:
+            - "4000:3000"
     db:
         image: postgres
         environment:
@@ -17,7 +23,6 @@ services:
             POSTGRES_DB: "acesso"
         ports:
         - "15432:5432"
-
     cliente_db:
         image: postgres
         environment:
