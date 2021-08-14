@@ -1,15 +1,13 @@
-FROM python:3.8.5-alpine
+FROM python:3.8.5
 
 WORKDIR /app
 
 COPY requirements.txt .
 
-RUN apk update && \
-    apk add --virtual build-deps gcc musl-dev && \
-    apk add postgresql-dev
-
 RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["python", "app.py"]
+EXPOSE 5000
+
+CMD ["python", "run.py"]

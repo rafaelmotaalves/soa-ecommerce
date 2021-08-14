@@ -1,28 +1,44 @@
 version: "3"
 services:
+    front:
+        build:
+            context: ./front
+        ports:
+            - "3000:3000"
     fachada:
         build:
             context: ./fachada/
         ports:
-            - "8080:8080"
+            - "8082:8082"
+        environment:
+            ACESSO_URL: "http://acesso:5000"
+            CLIENTE_URL: "http://cliente:4000"
     acesso:
         build:
             context: ./controle-acesso
-        ports:
-          - "5000:5000"
-    db:
+        environment:
+            DATABASE_HOST: "acesso_db"
+            DATABASE_PORT: "5432"
+            SECRET_KEY: "secret_docker"
+        depends_on:
+         - acesso_db
+    # cliente:
+    #     build:
+    #         context: ./controle-cliente
+    #     volumes:
+    #         - .:/myapp
+    #     ports:
+    #         - "4000:4000"
+    acesso_db:
         image: postgres
         environment:
             POSTGRES_PASSWORD: "password"
             POSTGRES_DB: "acesso"
-        ports:
-        - "15432:5432"
-
-    cliente_db:
-        image: postgres
-        environment:
-            POSTGRES_USER: "root"
-            POSTGRES_PASSWORD: "password"
-            POSTGRES_DB: "cliente"
-        ports:
-        - "15433:5432"
+    # cliente_db:
+    #     image: postgres
+    #     environment:
+    #         POSTGRES_USER: "root"
+    #         POSTGRES_PASSWORD: "password"
+    #         POSTGRES_DB: "cliente"
+    #     ports:
+    #     - "15433:5432"
