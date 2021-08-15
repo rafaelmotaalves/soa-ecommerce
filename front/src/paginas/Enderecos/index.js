@@ -23,6 +23,7 @@ export function EnderecosController (props) {
           )
         })}
       </ul>
+      <a href="/enderecos/cadastrar">Cadastrar novo</a>
     </div>
   )
 }

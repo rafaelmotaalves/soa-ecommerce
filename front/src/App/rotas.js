@@ -30,7 +30,19 @@ const Rotas = () => (
       <RotaAutenticada exact path="/enderecos/cadastrar" component={CadastroEnderecoController} />
       <RotaAutenticada exact path="/cartoes" component={CartoesController} />
       <RotaAutenticada exact path="/enderecos" component={EnderecosController} />
-      <RotaAutenticada path="/hello" component={() => <h1>App</h1>} />
+      <RotaAutenticada path="/hello" component={() => (
+        <div>
+          <h1>App</h1>
+          <ul>
+            <li>
+              <a href="/cartoes">Meus cartões</a>
+            </li>
+            <li>
+              <a href="/enderecos">Meus Endereços</a>
+            </li>
+          </ul>
+        </div>
+      )} />
       <Route path="*" component={() => <h1>Pagina não encontrada</h1>} />
     </Switch>
   </BrowserRouter>

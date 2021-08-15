@@ -22,6 +22,7 @@ export function CartoesController (props) {
           )
         })}
       </ul>
+      <a href="/cartoes/cadastrar">Cadastrar novo</a>
     </div>
   )
 }

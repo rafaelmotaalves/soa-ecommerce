@@ -24,6 +24,9 @@ export function LoginView (props) {
             <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
             <input type="password" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)}/>
             <button type="submit">Entrar</button>
+            <div>
+             <a href="/cadastrar">Cadastre-se</a>
+            </div>
         </form>
         <p>{ menssagem }</p>
     </div>
