@@ -16,15 +16,19 @@ services:
     acesso:
         build:
             context: ./controle-acesso
+        restart: always
         environment:
             DATABASE_HOST: "acesso_db"
             DATABASE_PORT: "5432"
             SECRET_KEY: "secret_docker"
+        ports:
+            - "5000:5000"
         depends_on:
         - acesso_db
     cliente:
         build:
             context: ./controle-cliente
+        restart: always
         environment:
             DATABASE_HOST: "cliente_db"
             DATABASE_PORT: "5432"
