@@ -19,7 +19,7 @@ export function EnderecosController (props) {
       <ul>
         {enderecos.map(endereco => {
           return (
-          <li key={endereco.id}>numero: {endereco.rua} tipo: {endereco.numero}</li>
+          <li key={endereco.id}>rua: {endereco.rua} número: {endereco.numero}</li>
           )
         })}
       </ul>
