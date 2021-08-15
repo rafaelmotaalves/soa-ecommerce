@@ -8,10 +8,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Component
 public class ComunicacaoControleAcesso {
 
     private RestTemplate restTemplate;
+    
+    private static final String ROTA_VERIFICAR = "/verificar";
+
+
+    Logger logger = LoggerFactory.getLogger(ComunicacaoControleAcesso.class);
 
     @Value("${acesso.url}")
     private String acessoUrl;
@@ -26,8 +34,9 @@ public class ComunicacaoControleAcesso {
 
         HttpEntity<HttpHeaders> entity = new HttpEntity<>(headers);
 
+        String url = this.acessoUrl + ROTA_VERIFICAR;
         ResponseEntity<ClienteInternetDTO> response = this.restTemplate.exchange(
-            acessoUrl, HttpMethod.GET, entity, ClienteInternetDTO.class);
+            url, HttpMethod.GET, entity, ClienteInternetDTO.class);
 
         return response.getBody();
     }

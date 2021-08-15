@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 @Component
 class AcessoFilter implements GatewayFilter {
 
-    Logger logger = LoggerFactory.getLogger(GatewayFilter.class);
+    Logger logger = LoggerFactory.getLogger(AcessoFilter.class);
 
     @Autowired
     ComunicacaoControleAcesso comunicacaoControleAcesso;
@@ -49,6 +49,7 @@ class AcessoFilter implements GatewayFilter {
 
             return chain.filter(exchange);
         } catch (Exception e) {
+            e.printStackTrace();
             logger.info(e.getMessage());
             return rejeitarRequisicao(exchange);
         }

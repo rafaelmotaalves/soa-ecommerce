@@ -1,7 +1,7 @@
 acesso:
-  url: http://localhost:5000/verificar
+  url: "${ACESSO_URL:http://localhost:5000}"
 server:
-    port: 8080
+  port: 8082
 spring:
     application:
       name: gateway
@@ -11,13 +11,35 @@ spring:
             - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
             routes:
                 - id: controle-acesso
-                  uri: http://localhost:5000/login
+                  uri: ${ACESSO_URL:http://localhost:5000}/login
                   predicates:
                   - Path=/login
-                - id: controle-acesso
-                  uri: http://localhost:5000/
+                - id: controle-cliente
+                  uri: ${CLIENTE_URL:http://localhost:4000}/cadastrar
                   predicates:
-                  - Path=/
+                  - Path=/cadastrar
+                - id: controle-cliente
+                  uri: ${CLIENTE_URL:http://localhost:4000}/cartoes/cadastrar
+                  predicates:
+                  - Path=/cartoes/cadastrar
+                  filters:
+                  - AcessoFilterFactory
+                - id: controle-cliente
+                  uri: ${CLIENTE_URL:http://localhost:4000}/cartoes
+                  predicates:
+                  - Path=/cartoes
+                  filters:
+                  - AcessoFilterFactory
+                - id: controle-cliente
+                  uri: ${CLIENTE_URL:http://localhost:4000}/enderecos/cadastrar
+                  predicates:
+                  - Path=/enderecos/cadastrar
+                  filters:
+                  - AcessoFilterFactory
+                - id: controle-cliente
+                  uri: ${CLIENTE_URL:http://localhost:4000}/enderecos
+                  predicates:
+                  - Path=/enderecos
                   filters:
                   - AcessoFilterFactory
             globalcors:
